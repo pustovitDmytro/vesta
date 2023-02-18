@@ -8,8 +8,6 @@ Simplify time measurements.
 [![CodeFactor][codefactor-badge]][codefactor-url]
 [![SonarCloud][sonarcloud-badge]][sonarcloud-url]
 [![Codacy][codacy-badge]][codacy-url]
-[![Total alerts][lgtm-alerts-badge]][lgtm-alerts-url]
-[![Language grade][lgtm-lg-badge]][lgtm-lg-url]
 [![Scrutinizer][scrutinizer-badge]][scrutinizer-url]
 
 [![Dependencies][badge-deps]][npm]
@@ -179,12 +177,6 @@ Make the changes to the code and tests. Then commit to your branch. Be sure to f
 
 [scrutinizer-badge]: https://scrutinizer-ci.com/g/pustovitDmytro/vesta/badges/quality-score.png?b=master
 [scrutinizer-url]: https://scrutinizer-ci.com/g/pustovitDmytro/vesta/?branch=master
-
-[lgtm-lg-badge]: https://img.shields.io/lgtm/grade/javascript/g/pustovitDmytro/vesta.svg?logo=lgtm&logoWidth=18
-[lgtm-lg-url]: https://lgtm.com/projects/g/pustovitDmytro/vesta/context:javascript
-
-[lgtm-alerts-badge]: https://img.shields.io/lgtm/alerts/g/pustovitDmytro/vesta.svg?logo=lgtm&logoWidth=18
-[lgtm-alerts-url]: https://lgtm.com/projects/g/pustovitDmytro/vesta/alerts/
 
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/8667aa23afaa4725854f098c4b5e8890
 [codacy-url]: https://www.codacy.com/gh/pustovitDmytro/vesta/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pustovitDmytro/vesta&amp;utm_campaign=Badge_Grade
