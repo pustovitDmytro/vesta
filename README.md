@@ -1,3 +1,4 @@
+![Logo](.docs/logo_250.png "vesta")
 # vesta
 Simplify time measurements.
 
