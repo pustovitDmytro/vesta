@@ -1,5 +1,5 @@
 {
-  "name": "npm-boilerplate",
+  "name": "vesta",
   "version": "0.0.1",
   "description": "boilerplate for creating npm packages",
   "main": "./lib",
@@ -20,17 +20,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pustovitDmytro/npm-boilerplate.git"
+    "url": "https://github.com/pustovitDmytro/vesta.git"
   },
   "author": "Dmytro Pustovit",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pustovitDmytro/npm-boilerplate/issues"
+    "url": "https://github.com/pustovitDmytro/vesta/issues"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=10.7"
   },
-  "homepage": "https://github.com/pustovitDmytro/npm-boilerplate#readme",
+  "homepage": "https://github.com/pustovitDmytro/vesta#readme",
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.12",
@@ -52,7 +52,7 @@
     "conventional-changelog-eslint": "^3.0.9",
     "coveralls": "^3.1.1",
     "danger": "^11.0.2",
-    "eslint": "^8.8.0",
+    "eslint": "^7.32.0",
     "eslint-config-incredible": "^2.4.0",
     "eslint-plugin-censor": "^1.5.2",
     "eslint-plugin-import": "^2.25.4",
@@ -65,9 +65,9 @@
     "eslint-plugin-scanjs-rules": "^0.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-sonarjs": "^0.11.0",
-    "eslint-plugin-unicorn": "^44.0.2",
+    "eslint-plugin-unicorn": "^36.0.0",
     "fs-extra": "^10.0.0",
-    "husky": "^8.0.2",
+    "husky": "^8.0.2", 
     "jscpd": "^3.4.5",
     "lockfile-lint": "^4.6.2",
     "mocha": "^10.1.0",
@@ -77,5 +77,8 @@
     "semantic-release": "^19.0.5",
     "semantic-release-telegram": "^1.6.0",
     "uuid": "^9.0.0"
+  },
+  "dependencies": {
+    "myrmidon": "1.8.0"
   }
 }
