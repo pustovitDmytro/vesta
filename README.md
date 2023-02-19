@@ -36,6 +36,7 @@ We fight for democratic values, freedom, for our future! Once again Ukrainians h
   - [Installation](#installation)
   - [Usage](#usage)
     - [Minimal Configuration](#minimal-configuration)
+    - [Sequences](#sequences)
     - [Timers](#timers)
     - [Reporters](#reporters)
     - [Customization](#customization)
@@ -84,6 +85,36 @@ console.log(bench.report());
 // Q75: 47.5
 
 ```
+
+### Sequences
+
+in case of consecutive measurements use next api:
+
+```javascript
+import BenchMark, { JSONReporter } from 'vesta';
+
+const bench = new BenchMark();
+
+bench.sequence('before cycle');
+
+for (const iter of [ 1, 2, 3 ]) {
+    const iteration = bench.iteration(iter);
+
+    iteration.sequence('before iteration');
+    await pause(15);
+    iteration.sequence('15ms gone');
+    await pause(10);
+    iteration.sequence('after 10ms more');
+    await pause(20);
+    iteration.sequence('end of the iteration');
+}
+
+bench.sequence('after cycle');
+
+console.log(bench.report(new JSONReporter()));
+// [{"label":"before cycle","benchmark":0},{"label":"after cycle","benchmark":139},{"label":"before iteration","total":3,"mean":0,"q25":0,"q75":0},{"label":"15ms gone","total":3,"mean":15.333333333333334,"q25":15,"q75":15.5},{"label":"after 10ms more","total":3,"mean":10,"q25":10,"q75":10},{"label":"end of the iteration","total":3,"mean":20,"q25":20,"q75":20}]
+```
+
 
 ### Timers
 Timers are used to fix the moment of time.

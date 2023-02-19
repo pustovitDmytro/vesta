@@ -1,8 +1,17 @@
 {
   "name": "vesta",
   "version": "1.0.0",
-  "description": "boilerplate for creating npm packages",
+  "description": "Simplify time measurements",
   "main": "./lib",
+  "keywords": [
+    "benchmark", 
+    "time", 
+    "performance", 
+    "clock", 
+    "timer", 
+    "time-measurement",
+    "debug"
+  ],
   "scripts": {
     "prepare": "babel src --out-dir ./lib --copy-files && husky install",
     "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
