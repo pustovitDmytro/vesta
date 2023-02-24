@@ -1,14 +1,14 @@
 {
   "name": "vesta",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simplify time measurements",
   "main": "./lib",
   "keywords": [
-    "benchmark", 
-    "time", 
-    "performance", 
-    "clock", 
-    "timer", 
+    "benchmark",
+    "time",
+    "performance",
+    "clock",
+    "timer",
     "time-measurement",
     "debug"
   ],

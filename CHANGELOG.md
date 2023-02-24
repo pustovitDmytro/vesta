@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/pustovitDmytro/vesta/compare/v1.0.0...v1.0.1) (2023-02-24)
+
+
+### Docs
+
+* adds Sequences api to Readme ([630984b](https://github.com/pustovitDmytro/vesta/commit/630984b520030a7f1abe5d3224066eaa545c4913))
+
 # 1.0.0 (2023-02-18)
 
 
