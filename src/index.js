@@ -6,6 +6,7 @@ import BaseReporter from './reporters/Reporter';
 import BaseTimer from './counters/Timer';
 import PerformanceNow from './counters/PerformanceNow';
 import ProcessHrtime from './counters/ProcessHrtime';
+import Memory from './Memory';
 
 export default BenchMark;
 
@@ -16,5 +17,6 @@ export {
     BenchMark,
     PlainReporter,
     JSONReporter,
-    BaseReporter
+    BaseReporter,
+    Memory
 };

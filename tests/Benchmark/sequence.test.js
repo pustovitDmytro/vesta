@@ -1,39 +1,26 @@
-import { assert } from 'chai';
 import { pause } from 'myrmidon';
 import { BenchMark, JSONReporter } from '../entry';
+import { checkReportItem } from '../utils';
 
 suite('sequence');
-
-const PERMISSIBLE_FAULT = 0.08;
-
-function checkReportItem(report, label, metric, value) {
-    const message = `label=${label}, metric=${metric}, value=${value}`;
-    const item = report.find(r => r.label === label);
-
-    assert.exists(item, message);
-    const metricValue = item[metric];
-
-    assert.isAtLeast(metricValue, value * (1 - PERMISSIBLE_FAULT), message);
-    assert.isAtMost(metricValue, value * (1 + PERMISSIBLE_FAULT), message);
-}
 
 test('Positive: one iteration', async function () {
     const bench = new BenchMark({});
 
     bench.sequence('before all');
+    await pause(25);
+    bench.sequence('25ms gone');
     await pause(15);
-    bench.sequence('15ms gone');
-    await pause(5);
-    bench.sequence('after 5ms more');
-    await pause(10);
+    bench.sequence('after 15ms more');
+    await pause(50);
     bench.sequence('end of the test');
 
     const report = JSON.parse(bench.report(new JSONReporter()));
 
     checkReportItem(report, 'before all', 'benchmark', 0);
-    checkReportItem(report, '15ms gone', 'benchmark', 15);
-    checkReportItem(report, 'after 5ms more', 'benchmark', 5);
-    checkReportItem(report, 'end of the test', 'benchmark', 10);
+    checkReportItem(report, '25ms gone', 'benchmark', 25);
+    checkReportItem(report, 'after 15ms more', 'benchmark', 15);
+    checkReportItem(report, 'end of the test', 'benchmark', 50);
 });
 
 test('Positive: several iterations', async function () {

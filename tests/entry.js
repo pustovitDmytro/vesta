@@ -12,6 +12,7 @@ const {
     BenchMark,
     PlainReporter,
     JSONReporter,
+    Memory,
     BaseReporter
 } = m;
 
@@ -21,6 +22,7 @@ export {
     ProcessHrtime,
     BenchMark,
     PlainReporter,
+    Memory,
     JSONReporter,
     BaseReporter
 };

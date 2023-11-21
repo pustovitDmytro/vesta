@@ -40,6 +40,7 @@ We fight for democratic values, freedom, for our future! Once again Ukrainians h
     - [Timers](#timers)
     - [Reporters](#reporters)
     - [Customization](#customization)
+    - [Memory](#memory)
   - [Contribute](#contribute)
 
 ## Requirements
@@ -181,6 +182,31 @@ bench.calculate({
         overMean : (arr, metrics) => arr.filter(i => i.bench > metrics.mean).map(i => i.payload)
     }
 });
+```
+
+### Memory
+
+use same api to benchmark memory usage:
+
+```javascript
+import { Memory, PlainReporter } from 'vesta';
+
+const bench = new Memory();
+
+const b1 = bench.start('before');
+const a = Array.from({ length: 1e7 });
+
+bench.end(b1);
+
+console.log(bench.report(new PlainReporter(), { pretty: true }));
+
+//   ------------------------
+// Label: before
+// Rss: 76.05MB
+// HeapTotal: 76.3MB
+// HeapUsed: 76.29MB
+// External: 0MB
+// ArrayBuffers: 0MB
 ```
 
 ## Contribute

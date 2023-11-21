@@ -1,5 +1,6 @@
+import Counter from './Counter';
 
-export default class Timer {
+export default class Timer extends Counter {
     bench() {
         return new Date();
     }
