@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/pustovitDmytro/vesta/compare/v1.0.1...v1.1.0) (2023-11-21)
+
+
+### New
+
+* adds memory benchmarker ([a447ca5](https://github.com/pustovitDmytro/vesta/commit/a447ca580180c13c450741bd684567c5e0b3ce7b))
+
 ## [1.0.1](https://github.com/pustovitDmytro/vesta/compare/v1.0.0...v1.0.1) (2023-02-24)
 
 
