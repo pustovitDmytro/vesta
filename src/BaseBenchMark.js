@@ -141,7 +141,12 @@ export default class BaseBenchMark {
         this._reports = [];
         const labels = [ ...this._labels ];
 
-        this._iterations.forEach(benchmark => labels.push(...benchmark._labels));
+        for (const benchmark of this._iterations) {
+            for (const label of benchmark._labels) {
+                labels.push(label);
+            }
+        }
+
         const labelsList = new Set(labels.map(l => l.label));
 
         this.calculateIntervals();
