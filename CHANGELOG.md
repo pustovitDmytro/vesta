@@ -1,3 +1,18 @@
+# [1.2.0](https://github.com/pustovitDmytro/vesta/compare/v1.1.0...v1.2.0) (2023-11-22)
+
+
+### Docs
+
+* adds custom metrics section ([16531c9](https://github.com/pustovitDmytro/vesta/commit/16531c9c15ade70b76e3704c00710bf5ae10402a))
+
+### Fix
+
+* max call stack on many labels ([6044329](https://github.com/pustovitDmytro/vesta/commit/60443291b77c27054d600aa2c9ecb2adfda84152))
+
+### New
+
+* adds time prettifiers ([f03429c](https://github.com/pustovitDmytro/vesta/commit/f03429cc45657f8adb57c7a8157360fbdf44d74e))
+
 # [1.1.0](https://github.com/pustovitDmytro/vesta/compare/v1.0.1...v1.1.0) (2023-11-21)
 
 
