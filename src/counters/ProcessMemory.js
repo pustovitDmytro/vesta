@@ -1,3 +1,4 @@
+import { formatBytes } from '../utils/formatters';
 import Counter from './Counter';
 
 function safeGetKey(report, key) {
@@ -10,8 +11,7 @@ export default class ProcessMemoryCountrer extends Counter {
     }
 
     static prettify(data) {
-        // eslint-disable-next-line no-magic-numbers
-        return `${Math.round(data / 1024 / 1024 * 100) / 100}MB`;
+        return formatBytes(data);
     }
 
     diff(start, end) {

@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { mean, isValue, isObject } from 'myrmidon';
+import { mean, isValue, isObject, InclusiveFilter } from 'myrmidon';
 import PlainReporter from './reporters/PlainReporter';
 
 export default class BaseBenchMark {
@@ -104,26 +104,15 @@ export default class BaseBenchMark {
             return report;
         }
 
-
-        const mergedMetrics = {
-            ...this.constructor.metrics,
-            ...metrics
-        };
-
         if (multiObservation) {
-            this._prepareMultiObservationReport(bench, mergedMetrics, report);
+            this._prepareMultiObservationReport(bench, metrics, report);
         } else {
-            this._prepareSingleObservationReport(bench, mergedMetrics, report);
+            this._prepareSingleObservationReport(bench, metrics, report);
         }
 
-        const mergedItems = {
-            ...this.constructor.items,
-            ...items
-        };
-
-        for (const itemLabel of Object.keys(mergedItems)) {
-            if (!mergedItems[itemLabel]) continue;
-            report[itemLabel] = mergedItems[itemLabel](
+        for (const itemLabel of Object.keys(items)) {
+            if (!items[itemLabel]) continue;
+            report[itemLabel] = items[itemLabel](
                 filtered,
                 report
             );
@@ -152,19 +141,55 @@ export default class BaseBenchMark {
         this.calculateIntervals();
         this._iterations.forEach(b => b.calculateIntervals());
 
+
+        const mergedMetrics = { ...this.constructor.metrics, ...metrics };
+        const mergedItems = { ...this.constructor.items, ...items };
+        const metricsList = Object.keys(mergedMetrics);
+        const itemsList = Object.keys(mergedItems);
+
         for (const label of labelsList) {
-            const report = this.prepareReport(label, labels, { metrics, items });
+            const report = this.prepareReport(label, labels, { metrics: mergedMetrics, items: mergedItems });
 
             if (!report) continue;
+            report._meta = { metricsList, itemsList };
             this._reports.push(report);
         }
     }
 
-    report(reporter = new PlainReporter(), { pretty = false } = {}) {
+    report(reporter = new PlainReporter(), {
+        pretty = null
+    } = {}) {
         this.calculate();
 
         return reporter.run(this._reports, {
-            prettify : pretty && this.counter.constructor.prettify
+            prettify : pretty && this.counter.constructor.prettify && this.prettify.bind(
+                this,
+                this.counter.constructor.prettify,
+                isObject(pretty) ? pretty : {}
+            )
         });
+    }
+
+    prettify(prettifier, config, obj, meta) {
+        const res = {};
+        const {
+            exclude,
+            include = [ ...meta.metricsList, 'benchmark' ]
+        } = config;
+
+        const filter = new InclusiveFilter({ include, exclude });
+
+        for (const key of Object.keys(obj)) {
+            if (isObject(obj[key])) {
+                res[key] = this.prettify(prettifier, config, obj[key], meta);
+                continue;
+            }
+
+            res[key] = filter.run(key)
+                ? prettifier(obj[key])
+                : obj[key];
+        }
+
+        return res;
     }
 }

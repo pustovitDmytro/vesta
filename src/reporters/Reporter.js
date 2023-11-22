@@ -9,10 +9,8 @@ export default class Reporter {
 
     run(reports, { prettify }) {
         return this.merge(
-            reports.map(({ label, ...r }) => {
-                const metrics = prettify
-                    ? this.prettify(prettify, r)
-                    : r;
+            reports.map(({ label, _meta, ...r }) => {
+                const metrics = prettify ? prettify(r, _meta) : r;
 
                 return this.render({
                     label,
@@ -20,15 +18,5 @@ export default class Reporter {
                 });
             })
         );
-    }
-
-    prettify(prettifier, obj) {
-        const res = {};
-
-        for (const key of Object.keys(obj)) {
-            res[key] = prettifier(obj[key]);
-        }
-
-        return res;
     }
 }

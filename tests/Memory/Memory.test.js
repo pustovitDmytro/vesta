@@ -50,8 +50,20 @@ test('Positive: pretty labels', async function () {
 
     bench.end(b1);
 
-    assert.include(
-        bench.report(new PlainReporter(), { pretty: true }),
-        '0MB'
+    for (const iter of [ 1, 2, 3 ]) {
+        const iteration = bench.iteration(iter);
+
+        iteration.sequence('iterated');
+    }
+
+    const pretty = bench.report(new PlainReporter(), { pretty: true });
+
+    assert.include(pretty, 'mean: 0');
+    assert.notInclude(pretty, 'NaN');
+    assert.match(pretty, /Total: 3$/m);
+
+    assert.notInclude(
+        bench.report(new PlainReporter(), { pretty: false }),
+        '[object Object]'
     );
 });

@@ -1,3 +1,5 @@
+import { inspect } from 'util';
+import { isObject } from 'myrmidon';
 import Reporter from './Reporter';
 
 function capitilize(str) {
@@ -9,7 +11,12 @@ export default class PlainReporter extends  Reporter {
         return [
             '------------------------',
             ...Object.keys(report)
-                .map(key => `${capitilize(key)}: ${report[key]}`)
+                .map(key => {
+                    const title = capitilize(key);
+                    const payload = isObject(report[key]) ? inspect(report[key]) : report[key];
+
+                    return `${title}: ${payload}`;
+                })
         ].join('\n');
     }
 

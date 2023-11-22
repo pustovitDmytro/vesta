@@ -38,7 +38,7 @@ We fight for democratic values, freedom, for our future! Once again Ukrainians h
     - [Minimal Configuration](#minimal-configuration)
     - [Sequences](#sequences)
     - [Timers](#timers)
-    - [Reporters](#reporters)
+    - [Reports](#reports)
     - [Customization](#customization)
       - [Custom mertics](#custom-mertics)
     - [Memory](#memory)
@@ -141,7 +141,9 @@ const bench = new BenchMark({
 
 to implement own timer it is recomended to  extends `Timer` and follow it's interfece.
 
-### Reporters
+### Reports
+
+There are two reports available:
   * `JSONReporter` - report in json format, usefull for external export.
   * `PlainReporter` - used by default.
 
@@ -155,6 +157,45 @@ const bench = new BenchMark();
 const report = JSON.parse(bench.report(new JSONReporter()));
 
 ```
+
+to pretty print numbers in report use:
+```javascript
+import BenchMark, { PlainReporter } from 'vesta';
+
+const bench = new BenchMark();
+
+bench.report(new PlainReporter(), { pretty: true });
+```
+
+or pass `pretty` as configuration object:
+
+```javascript
+import BenchMark, { JSONReporter } from 'vesta';
+
+const bench = new BenchMark({});
+
+bench.sequence('before');
+await pause(2500);
+bench.sequence('after');
+
+console.log(
+    bench.report(new JSONReporter(), {
+        pretty : {
+            exclude : [ 'total' ],
+            include : [ 'mean', 'benchmark' ]
+        }
+    })
+);
+
+// [
+//     { label: 'before', benchmark: 0 },
+//     { label: 'after', benchmark: '2s 504ms' }
+// ];
+
+```
+where
+ * `include` - array with metric names, for which prettifier will be added.
+ * `exclude` - array with metric names, for which prettifier won't be added.
 
 ### Customization
 
@@ -198,6 +239,7 @@ bench.calculate({
   ```
 
 These additions allow you to tailor the benchmarks and generate more comprehensive reports tailored to your specific needs.
+
 
 
 ### Memory
