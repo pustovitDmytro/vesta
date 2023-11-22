@@ -40,6 +40,7 @@ We fight for democratic values, freedom, for our future! Once again Ukrainians h
     - [Timers](#timers)
     - [Reporters](#reporters)
     - [Customization](#customization)
+      - [Custom mertics](#custom-mertics)
     - [Memory](#memory)
   - [Contribute](#contribute)
 
@@ -163,7 +164,9 @@ pass next options to BenchMark properties:
 * `counter` (Timer): time measurer. autodetector by default.
 
 
-add new metrics:
+#### Custom mertics
+
+To enrich your reports, you can easily introduce new metrics to the benchmark calculations in your JavaScript code. Utilize the `calculate()` method along with `metrics` and `items` objects within the BenchMark instance:
 
 ```javascript
 import BenchMark from 'vesta';
@@ -174,19 +177,32 @@ bench.calculate({
     metrics : {
         over25ms : arr => arr.filter(i => i > 25).length, // number of benchmarks longer then 25ms,
 
-        // dont calculate quantiles
+        // Omit calculation for quantiles
         q25 : null,
         q75 : null
     },
     items : {
+        // Identify benchmarks over the mean value
         overMean : (arr, metrics) => arr.filter(i => i.bench > metrics.mean).map(i => i.payload)
     }
 });
 ```
 
+  Some of the other custom metrics you might be looking for:
+
+  * include a metric for the mean value over the last 10 records exclusively:
+  ```javascript
+  metrics : {
+      last10 : arr => BenchMark.metrics.mean(arr.slice(-10));
+  }
+  ```
+
+These additions allow you to tailor the benchmarks and generate more comprehensive reports tailored to your specific needs.
+
+
 ### Memory
 
-use same api to benchmark memory usage:
+Use the same API to benchmark memory usage:
 
 ```javascript
 import { Memory, PlainReporter } from 'vesta';
