@@ -88,6 +88,6 @@
     "uuid": "^9.0.0"
   },
   "dependencies": {
-    "myrmidon": "^1.9.0"
+    "myrmidon": "1.9.0"
   }
 }
